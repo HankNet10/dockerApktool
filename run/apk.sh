@@ -2,6 +2,7 @@
 apkpath=$1
 apkname=${apkpath##*/}
 packname=$2
+outpath=$3
 codepath=${apkname%.*}
 dateTime=a$(date "+%y%m%d%H%M%S")
 newPackname=${packname%.*}${dateTime}
@@ -37,7 +38,7 @@ newsize=$(stat --format=%s "/app/apk/$apkname")
 if [`expr $myfilesize - $newsize` > 3000000 || `expr $myfilesize - $newsize` < 3000000];then
     rm -r /app/apk/$apkname
 else
-    cp /app/apk/$apkname ${apkpath%/*}/
+    cp /app/apk/$apkname $outpath
     rm -r /app/apk/$apkname
 fi
 # -v /wwww/wwwroot/app:/app 
