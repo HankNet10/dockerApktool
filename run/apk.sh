@@ -5,7 +5,7 @@ packname=$2
 outpath=$3
 codepath=${apkname%.*}
 dateTime=a$(date "+%y%m%d%H%M%S")
-newPackname=${packname%.*}${dateTime}
+newPackname=${packname%.*}.${dateTime}
 mkdir /app/apk
 mkdir /app/apk/nosign
 cp $apkpath /app/apk/
