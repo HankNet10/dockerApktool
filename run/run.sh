@@ -1,0 +1,20 @@
+/bin/bash /app/run/mogu1.3.4.sh
+/bin/bash /app/run/mgchannel1.sh
+/bin/bash /app/run/mgchannel2.sh
+/bin/bash /app/run/mgchannel3.sh
+/bin/bash /app/run/mogu_dxtd.sh
+/bin/bash /app/run/mogu1.3.4bd.sh
+/bin/bash /app/run/mogu1.3.4gg.sh
+/bin/bash /app/run/mogu1.3.4s.sh
+/bin/bash /app/run/mogu1.3.4sg.sh
+/bin/bash /app/run/mogu1.3.4sgqz.sh
+/bin/bash /app/run/mogu1.3.4sll.sh
+
+/bin/bash /app/run/lanmei_1.2.0.sh
+/bin/bash /app/run/lanmeis_1.2.0.sh
+/bin/bash /app/run/lmbaiyu01.sh
+/bin/bash /app/run/lmbaiyu02.sh
+/bin/bash /app/run/lmbaiyu03.sh
+/bin/bash /app/run/lmchannel1.sh
+/bin/bash /app/run/lmchannel2.sh
+/bin/bash /app/run/lmchannel3.sh
