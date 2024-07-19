@@ -7,11 +7,10 @@ dateTime=a$(date "+%y%m%d%H%M%S")
 newPackname=${packname%.*}${dateTime}
 mkdir /app/apk
 mkdir /app/apk/nosign
-mkdir /app/apk/$codepath
 cp $apkpath /app/apk/
 keytool -genkey -keystore /app/apk/nosign/$dateTime.jks -keyalg RSA -validity 10000 -storepass 123456 -alias /app/apk/nosign/moguCA  -dname "CN=WE, OU=WE, O=WE, L=WE, ST=WE, C=ZH"
-
-java -jar /usr/local/apktool_2.9.3.jar d /app/apk/$apkname -o /app/apk/$codepath
+rm -r /app/apk/${codepath}
+java -jar /usr/local/apktool_2.9.3.jar d /app/apk/$apkname -o /app/apk/${codepath}
 
 cd /app/apk/$codepath
 chmod +x AndroidManifest.xml
@@ -30,8 +29,16 @@ zipalign -p 4 /app/apk/nosign/mogu.nozipalign.apk /app/apk/nosign/mogu.no.apk
 
 apksigner sign --ks /app/apk/nosign/$dateTime.jks --ks-key-alias /app/apk/nosign/moguCA --ks-pass pass:123456 --out /app/apk/$apkname /app/apk/nosign/mogu.no.apk
 
-rm -f /app/apk/mogu1.3.4.apk.idsig
+rm -f /app/apk/$apkname.idsig
 rm -r /app/apk/nosign
 rm -r /app/apk/$codepath
+myfilesize=$(stat --format=%s "$apkpath")
+newsize=$(stat --format=%s "/app/apk/$apkname")
+if [`expr $myfilesize - $newsize` > 3000000 || `expr $myfilesize - $newsize` < 3000000];then
+    rm -r /app/apk/$apkname
+else
+    cp /app/apk/$apkname ${apkpath%/*}/
+    rm -r /app/apk/$apkname
+fi
 # -v /wwww/wwwroot/app:/app 
 # docker exec apktool /app/run.sh
