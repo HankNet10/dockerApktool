@@ -35,11 +35,16 @@ rm -r /app/apk/nosign
 rm -r /app/apk/$codepath
 myfilesize=$(stat --format=%s "$apkpath")
 newsize=$(stat --format=%s "/app/apk/$apkname")
-if [`expr $myfilesize - $newsize` > 3000000 || `expr $myfilesize - $newsize` < 3000000];then
+size=`expr $myfilesize - $newsize`
+Difference=3000000
+if [ $size -ge $Difference -o $size -le -$Difference ]
+then
     rm -r /app/apk/$apkname
+    echo error
 else
     cp /app/apk/$apkname $outpath
     rm -r /app/apk/$apkname
+    echo success:$outpath$apkname
 fi
 # -v /wwww/wwwroot/app:/app 
 # docker exec apktool /app/run.sh
