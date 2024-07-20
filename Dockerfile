@@ -16,8 +16,11 @@ COPY . ./app
 RUN tar -C /usr/local -xzf /root/android-tool.tar.gz
 RUN tar -C /usr/local -xzf /root/openjdk-24-ea+6_linux-x64_bin.tar.gz
 
-RUN echo 'export PATH=$PATH:/usr/local/jdk-24/bin' >> /root/.bashrc
-RUN echo 'export PATH=$PATH:/usr/local/android-tool' >> /root/.bashrc
-RUN echo "alias apktool='java -jar /usr/local/apktool_2.9.3.jar'" >> /root/.bashrc
+# RUN ln -s /usr/local/jdk-24/bin/java /usr/bin/java
+# RUN ln -s /usr/local/jdk-24/bin/java /usr/bin/keytool
+# RUN ln -s /usr/local/android-tool /usr/bin/zipalign
+# RUN ln -s /usr/local/android-tool /usr/bin/apksigner
+
+
 
 WORKDIR /app

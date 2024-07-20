@@ -1,10 +1,19 @@
 #!/bin/bash
+#source /etc/profile
+export PATH=$PATH:/usr/local/jdk-24/bin
+export PATH=$PATH:/usr/local/android-tool
+#alias apktool='java -jar /usr/local/apktool_2.9.3.jar'
+source /etc/profile
+if [ "$#" -ne 3 ]; then 
+echo error 参数错误: apk文件路径 包名 输出路径
+exit
+fi
 apkpath=$1
 apkname=${apkpath##*/}
 packname=$2
 outpath=$3
 codepath=${apkname%.*}
-dateTime=a$(date "+%y%m%d%H%M%S")
+dateTime=a$(date '+%s%N' |base64 | tr A-Z a-z | cut -c 18-23)   #$(date "+%y%m%d%H%M%S")
 newPackname=${packname%.*}.${dateTime}
 mkdir /app/apk
 mkdir /app/apk/nosign
